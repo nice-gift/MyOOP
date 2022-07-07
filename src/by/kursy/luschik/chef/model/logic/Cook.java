@@ -35,7 +35,7 @@ public class Cook {
         return totalWeight;
     }
 
-    public static double calcTotalCalories(Vegetable[] vegetables) {
+    public static double calcTotalCal(Vegetable[] vegetables) {
         if (vegetables == null) {
             return 0;
         }
@@ -48,5 +48,50 @@ public class Cook {
         }
 
         return totalCalories;
+    }
+
+    private static int getMaxCal(Vegetable[] vegetables) {
+        int maxCal = vegetables[0].getCalories();
+        for (Vegetable vegetable : vegetables
+        ) {
+            if (vegetable.getCalories() > maxCal) {
+                maxCal = vegetable.getCalories();
+            }
+        }
+        return maxCal;
+    }
+
+    private static int countVegetablesWithMaxCal(Vegetable[] vegetables, int maxCal) {
+        int count = 0;
+
+        for (Vegetable vegetable : vegetables
+        ) {
+            if (vegetable.getCalories() == maxCal) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public static Vegetable[] findVegetablesWithMaxCal(Vegetable[] vegetables) {
+        if (vegetables == null || vegetables.length == 0) {
+            return new Vegetable[0];
+        }
+
+        int maxCal = getMaxCal(vegetables);
+        int count = countVegetablesWithMaxCal(vegetables, maxCal);
+
+        Vegetable[] result = new Vegetable[count];
+
+        int i = 0;
+        for (Vegetable vegetable : vegetables
+        ) {
+            if (vegetable.getCalories() == maxCal) {
+                result[i] = vegetable;
+                i++;
+            }
+        }
+
+        return result;
     }
 }

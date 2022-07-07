@@ -83,7 +83,7 @@ public class CookTest {
 
         double expected = 90;
 
-        double actual = Cook.calcTotalCalories(vegetables);
+        double actual = Cook.calcTotalCal(vegetables);
 
         assertEquals(expected, actual, 0.01);
     }
@@ -92,7 +92,7 @@ public class CookTest {
     public void testCalcTotalCaloriesWithNull() {
         double expected = 0;
 
-        double actual = Cook.calcTotalCalories(null);
+        double actual = Cook.calcTotalCal(null);
 
         assertEquals(expected, actual, 0.0);
     }
@@ -103,8 +103,70 @@ public class CookTest {
 
         double expected = 0;
 
-        double actual = Cook.calcTotalCalories(vegetables);
+        double actual = Cook.calcTotalCal(vegetables);
 
         assertEquals(expected, actual, 0.0);
     }
+
+    @Test
+    public void testFirstFindVegetablesWithMaxCalPositive() {
+        Vegetable[] vegetables = {
+                new Vegetable("Tomato", 140, 0.6, 30),
+                new Vegetable("Tomato", 140, 0.6, 35),
+                new Vegetable("Tomato", 140, 0.6, 30)};
+
+        Vegetable[] expected = {
+                new Vegetable("Tomato", 140, 0.6, 35)};
+
+        Vegetable[] actual = Cook.findVegetablesWithMaxCal(vegetables);
+        for (int i = 0; i < expected.length; i++) {
+            if (!expected[i].getName().equals(actual[i].getName()) ||
+                    expected[i].getWeight() != actual[i].getWeight() ||
+                    expected[i].getPrice() != actual[i].getPrice() ||
+                    expected[i].getCalories() != actual[i].getCalories()) {
+                fail();
+            }
+        }
+    }
+
+    @Test
+    public void testSecondFindVegetablesWithMaxCalPositive() {
+        Vegetable[] vegetables = {
+                new Vegetable("Tomato", 140, 0.6, 35),
+                new Vegetable("Tomato", 140, 0.6, 35),
+                new Vegetable("Tomato", 140, 0.6, 30)};
+
+        Vegetable[] expected = {
+                new Vegetable("Tomato", 140, 0.6, 35),
+                new Vegetable("Tomato", 140, 0.6, 35)};
+
+        Vegetable[] actual = Cook.findVegetablesWithMaxCal(vegetables);
+        for (int i = 0; i < expected.length; i++) {
+            if (!expected[i].getName().equals(actual[i].getName()) ||
+                    expected[i].getWeight() != actual[i].getWeight() ||
+                    expected[i].getPrice() != actual[i].getPrice() ||
+                    expected[i].getCalories() != actual[i].getCalories()) {
+                fail();
+            }
+        }
+    }
+
+    @Test
+    public void testFindVegetablesWithMaxCalPositiveWithNull() {
+        Vegetable[] expected = {};
+
+        Vegetable[] actual = Cook.findVegetablesWithMaxCal(null);
+
+        assertEquals(expected.length, actual.length);
+    }
+
+    @Test
+    public void testFindVegetablesWithMaxCalPositiveWithEmpty() {
+        Vegetable[] expected = {};
+
+        Vegetable[] actual = Cook.findVegetablesWithMaxCal(new Vegetable[0]);
+
+        assertEquals(expected.length, actual.length);
+    }
+
 }
