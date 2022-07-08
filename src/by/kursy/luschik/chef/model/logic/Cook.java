@@ -1,94 +1,89 @@
 package by.kursy.luschik.chef.model.logic;
 
+import by.kursy.luschik.chef.model.entity.Salad;
 import by.kursy.luschik.chef.model.entity.Vegetable;
 
 public class Cook {
     public static final double LABOR_PERCENT = 0.1;
 
-    public static double calcTotalPrice(Vegetable[] vegetables) {
-        if (vegetables == null) {
+    public static double calcTotalPrice(Salad salad) {
+        if (salad == null) {
             return 0;
         }
 
         double totalPrice = 0;
 
-        for (Vegetable vegetable : vegetables
-        ) {
-            totalPrice += vegetable.getPrice();
+        for (int i = 0; i < salad.size(); i++) {
+            totalPrice += salad.get(i).getPrice();
         }
 
         return totalPrice + totalPrice * LABOR_PERCENT;
     }
 
-    public static double calcTotalWeight(Vegetable[] vegetables) {
-        if (vegetables == null) {
+    public static double calcTotalWeight(Salad salad) {
+        if (salad == null) {
             return 0;
         }
 
         double totalWeight = 0;
 
-        for (Vegetable vegetable : vegetables
-        ) {
-            totalWeight += vegetable.getWeight();
+        for (int i = 0; i < salad.size(); i++) {
+            totalWeight += salad.get(i).getWeight();
         }
 
         return totalWeight;
     }
 
-    public static double calcTotalCal(Vegetable[] vegetables) {
-        if (vegetables == null) {
+    public static double calcTotalCal(Salad salad) {
+        if (salad == null) {
             return 0;
         }
 
         double totalCalories = 0;
 
-        for (Vegetable vegetable : vegetables
-        ) {
-            totalCalories += vegetable.getCalories();
+        for (int i = 0; i < salad.size(); i++) {
+            totalCalories += salad.get(i).getCalories();
         }
 
         return totalCalories;
     }
 
-    private static int getMaxCal(Vegetable[] vegetables) {
-        int maxCal = vegetables[0].getCalories();
-        for (Vegetable vegetable : vegetables
-        ) {
-            if (vegetable.getCalories() > maxCal) {
-                maxCal = vegetable.getCalories();
+    private static int getMaxCal(Salad salad) {
+        int maxCal = salad.get(0).getCalories();
+
+        for (int i = 0; i < salad.size(); i++) {
+            if (salad.get(i).getCalories() > maxCal) {
+                maxCal = salad.get(i).getCalories();
             }
         }
         return maxCal;
     }
 
-    private static int countVegetablesWithMaxCal(Vegetable[] vegetables, int maxCal) {
+    private static int countVegetablesWithMaxCal(Salad salad, int maxCal) {
         int count = 0;
 
-        for (Vegetable vegetable : vegetables
-        ) {
-            if (vegetable.getCalories() == maxCal) {
+        for (int i = 0; i < salad.size(); i++) {
+            if (salad.get(i).getCalories() == maxCal) {
                 count++;
             }
         }
         return count;
     }
 
-    public static Vegetable[] findVegetablesWithMaxCal(Vegetable[] vegetables) {
-        if (vegetables == null || vegetables.length == 0) {
+    public static Vegetable[] findVegetablesWithMaxCal(Salad salad) {
+        if (salad == null || salad.size() == 0) {
             return new Vegetable[0];
         }
 
-        int maxCal = getMaxCal(vegetables);
-        int count = countVegetablesWithMaxCal(vegetables, maxCal);
+        int maxCal = getMaxCal(salad);
+        int count = countVegetablesWithMaxCal(salad, maxCal);
 
         Vegetable[] result = new Vegetable[count];
 
-        int i = 0;
-        for (Vegetable vegetable : vegetables
-        ) {
-            if (vegetable.getCalories() == maxCal) {
-                result[i] = vegetable;
-                i++;
+        for (int i = 0, j=0; i < salad.size(); i++) {
+            if (salad.get(i).getCalories() == maxCal) {
+                result[j] = salad.get(i);
+                j++;
             }
         }
 

@@ -3,12 +3,15 @@ package by.kursy.luschik.chef.model.entity;
 public class Salad {
     private Vegetable[] vegetables;
 
-    public void Salad() {
+    public Salad() {
         vegetables = new Vegetable[0];
     }
 
-    public void Salad(Vegetable[] vegetables) {
-        this.vegetables = vegetables;
+    public Salad(Vegetable[] vegetables) {
+        if (vegetables != null) {
+            this.vegetables = vegetables;
+        }
+        else vegetables = new Vegetable[0];
     }
 
     public int size() {

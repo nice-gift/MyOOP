@@ -1,5 +1,6 @@
 package by.kursy.luschik.chef.model.logic;
 
+import by.kursy.luschik.chef.model.entity.Salad;
 import by.kursy.luschik.chef.model.entity.Vegetable;
 import org.junit.Test;
 
@@ -13,9 +14,11 @@ public class CookTest {
                 new Vegetable("Tomato", 140, 0.6, 30),
                 new Vegetable("Tomato", 140, 0.6, 30)};
 
+        Salad salad = new Salad(vegetables);
+
         double expected = 1.98;
 
-        double actual = Cook.calcTotalPrice(vegetables);
+        double actual = Cook.calcTotalPrice(salad);
 
         assertEquals(expected, actual, 0.01);
     }
@@ -32,10 +35,11 @@ public class CookTest {
     @Test
     public void testCalcTotalPriceWithEmpty() {
         Vegetable[] vegetables = {};
+        Salad salad = new Salad(vegetables);
 
         double expected = 0;
 
-        double actual = Cook.calcTotalPrice(vegetables);
+        double actual = Cook.calcTotalPrice(salad);
 
         assertEquals(expected, actual, 0.0);
     }
@@ -47,9 +51,11 @@ public class CookTest {
                 new Vegetable("Tomato", 140, 0.6, 30),
                 new Vegetable("Tomato", 140, 0.6, 30)};
 
+        Salad salad = new Salad(vegetables);
+
         double expected = 420;
 
-        double actual = Cook.calcTotalWeight(vegetables);
+        double actual = Cook.calcTotalWeight(salad);
 
         assertEquals(expected, actual, 0.01);
     }
@@ -66,10 +72,11 @@ public class CookTest {
     @Test
     public void testCalcTotalWeightWithEmpty() {
         Vegetable[] vegetables = {};
+        Salad salad = new Salad(vegetables);
 
         double expected = 0;
 
-        double actual = Cook.calcTotalWeight(vegetables);
+        double actual = Cook.calcTotalWeight(salad);
 
         assertEquals(expected, actual, 0.0);
     }
@@ -81,9 +88,11 @@ public class CookTest {
                 new Vegetable("Tomato", 140, 0.6, 30),
                 new Vegetable("Tomato", 140, 0.6, 30)};
 
+        Salad salad = new Salad(vegetables);
+
         double expected = 90;
 
-        double actual = Cook.calcTotalCal(vegetables);
+        double actual = Cook.calcTotalCal(salad);
 
         assertEquals(expected, actual, 0.01);
     }
@@ -101,9 +110,11 @@ public class CookTest {
     public void testCalcTotalCaloriesWithEmpty() {
         Vegetable[] vegetables = {};
 
+        Salad salad = new Salad(vegetables);
+
         double expected = 0;
 
-        double actual = Cook.calcTotalCal(vegetables);
+        double actual = Cook.calcTotalCal(salad);
 
         assertEquals(expected, actual, 0.0);
     }
@@ -115,10 +126,13 @@ public class CookTest {
                 new Vegetable("Tomato", 140, 0.6, 35),
                 new Vegetable("Tomato", 140, 0.6, 30)};
 
+        Salad salad = new Salad(vegetables);
+
         Vegetable[] expected = {
                 new Vegetable("Tomato", 140, 0.6, 35)};
 
-        Vegetable[] actual = Cook.findVegetablesWithMaxCal(vegetables);
+        Vegetable[] actual = Cook.findVegetablesWithMaxCal(salad);
+
         for (int i = 0; i < expected.length; i++) {
             if (!expected[i].getName().equals(actual[i].getName()) ||
                     expected[i].getWeight() != actual[i].getWeight() ||
@@ -136,11 +150,14 @@ public class CookTest {
                 new Vegetable("Tomato", 140, 0.6, 35),
                 new Vegetable("Tomato", 140, 0.6, 30)};
 
+        Salad salad = new Salad(vegetables);
+
         Vegetable[] expected = {
                 new Vegetable("Tomato", 140, 0.6, 35),
                 new Vegetable("Tomato", 140, 0.6, 35)};
 
-        Vegetable[] actual = Cook.findVegetablesWithMaxCal(vegetables);
+        Vegetable[] actual = Cook.findVegetablesWithMaxCal(salad);
+
         for (int i = 0; i < expected.length; i++) {
             if (!expected[i].getName().equals(actual[i].getName()) ||
                     expected[i].getWeight() != actual[i].getWeight() ||
@@ -164,7 +181,7 @@ public class CookTest {
     public void testFindVegetablesWithMaxCalPositiveWithEmpty() {
         Vegetable[] expected = {};
 
-        Vegetable[] actual = Cook.findVegetablesWithMaxCal(new Vegetable[0]);
+        Vegetable[] actual = Cook.findVegetablesWithMaxCal(new Salad());
 
         assertEquals(expected.length, actual.length);
     }
