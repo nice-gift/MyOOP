@@ -2,15 +2,17 @@ package by.kursy.luschik.chef.model.logic;
 
 import by.kursy.luschik.chef.model.entity.Salad;
 import by.kursy.luschik.chef.model.entity.Vegetable;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class CookTest {
 
-    private static final Salad salad;
+    private static Salad salad;
 
-    static {
+    @BeforeClass
+    public static void init() {
         Vegetable[] vegetables = {
                 new Vegetable("Tomato", 140, 0.6, 35),
                 new Vegetable("Tomato", 140, 0.6, 35),
