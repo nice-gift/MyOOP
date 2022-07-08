@@ -7,15 +7,20 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CookTest {
-    @Test
-    public void testCalcTotalPricePositive() {
+
+    private static final Salad salad;
+
+    static {
         Vegetable[] vegetables = {
-                new Vegetable("Tomato", 140, 0.6, 30),
-                new Vegetable("Tomato", 140, 0.6, 30),
+                new Vegetable("Tomato", 140, 0.6, 35),
+                new Vegetable("Tomato", 140, 0.6, 35),
                 new Vegetable("Tomato", 140, 0.6, 30)};
 
-        Salad salad = new Salad(vegetables);
+        salad = new Salad(vegetables);
+    }
 
+    @Test
+    public void testCalcTotalPricePositive() {
         double expected = 1.98;
 
         double actual = Cook.calcTotalPrice(salad);
@@ -46,13 +51,6 @@ public class CookTest {
 
     @Test
     public void testCalcTotalWeightPositive() {
-        Vegetable[] vegetables = {
-                new Vegetable("Tomato", 140, 0.6, 30),
-                new Vegetable("Tomato", 140, 0.6, 30),
-                new Vegetable("Tomato", 140, 0.6, 30)};
-
-        Salad salad = new Salad(vegetables);
-
         double expected = 420;
 
         double actual = Cook.calcTotalWeight(salad);
@@ -83,14 +81,7 @@ public class CookTest {
 
     @Test
     public void testCalcTotalCaloriesPositive() {
-        Vegetable[] vegetables = {
-                new Vegetable("Tomato", 140, 0.6, 30),
-                new Vegetable("Tomato", 140, 0.6, 30),
-                new Vegetable("Tomato", 140, 0.6, 30)};
-
-        Salad salad = new Salad(vegetables);
-
-        double expected = 90;
+        double expected = 100;
 
         double actual = Cook.calcTotalCal(salad);
 
@@ -145,13 +136,6 @@ public class CookTest {
 
     @Test
     public void testSecondFindVegetablesWithMaxCalPositive() {
-        Vegetable[] vegetables = {
-                new Vegetable("Tomato", 140, 0.6, 35),
-                new Vegetable("Tomato", 140, 0.6, 35),
-                new Vegetable("Tomato", 140, 0.6, 30)};
-
-        Salad salad = new Salad(vegetables);
-
         Vegetable[] expected = {
                 new Vegetable("Tomato", 140, 0.6, 35),
                 new Vegetable("Tomato", 140, 0.6, 35)};
@@ -185,5 +169,4 @@ public class CookTest {
 
         assertEquals(expected.length, actual.length);
     }
-
 }
