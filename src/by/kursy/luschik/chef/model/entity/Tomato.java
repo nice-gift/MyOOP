@@ -5,6 +5,8 @@ public class Tomato extends Vegetable {
     private int dia;
 
     public Tomato() {
+        color = Color.FERRARI;
+        dia = 0;
     }
 
     public Tomato(String name, double weight, double price, int calories, Color color, int dia) {
@@ -33,8 +35,7 @@ public class Tomato extends Vegetable {
     public void setDia(int dia) {
         if (dia > 0) {
             this.dia = dia;
-        }
-        else{
+        } else {
             System.err.println("Error! Wrong value!");
         }
     }
@@ -59,8 +60,7 @@ public class Tomato extends Vegetable {
 
     @Override
     public String toString() {
-        return super.toString() +
-                ", color = " + color + ", dia = " + dia;
+        return super.toString() + ", color = " + color + ", dia = " + dia;
     }
 }
 
