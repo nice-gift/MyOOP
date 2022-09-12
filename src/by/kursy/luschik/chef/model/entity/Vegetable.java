@@ -1,6 +1,8 @@
 package by.kursy.luschik.chef.model.entity;
 
-public class Vegetable {
+import java.io.Serializable;
+
+public class Vegetable implements Serializable {
     private String name;
     private double weight;
     private double price;

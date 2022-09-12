@@ -13,8 +13,8 @@ public class Cook {
 
         double totalPrice = 0;
 
-        for (int i = 0; i < salad.size(); i++) {
-            totalPrice += salad.get(i).getPrice();
+        for (Vegetable vegetable : salad) {
+            totalPrice += vegetable.getPrice();
         }
 
         return totalPrice + totalPrice * LABOR_PERCENT;
@@ -27,8 +27,8 @@ public class Cook {
 
         double totalWeight = 0;
 
-        for (int i = 0; i < salad.size(); i++) {
-            totalWeight += salad.get(i).getWeight();
+        for (Vegetable vegetable : salad) {
+            totalWeight += vegetable.getWeight();
         }
 
         return totalWeight;
@@ -41,19 +41,19 @@ public class Cook {
 
         double totalCalories = 0;
 
-        for (int i = 0; i < salad.size(); i++) {
-            totalCalories += salad.get(i).getCalories();
+        for (Vegetable vegetable : salad) {
+            totalCalories += vegetable.getCalories();
         }
 
         return totalCalories;
     }
 
     private static int getMaxCal(Salad salad) {
-        int maxCal = salad.get(0).getCalories();
+        int maxCal = 0;
 
-        for (int i = 0; i < salad.size(); i++) {
-            if (salad.get(i).getCalories() > maxCal) {
-                maxCal = salad.get(i).getCalories();
+        for (Vegetable vegetable : salad) {
+            if (vegetable.getCalories() > maxCal) {
+                maxCal = vegetable.getCalories();
             }
         }
         return maxCal;
@@ -62,8 +62,8 @@ public class Cook {
     private static int countVegetablesWithMaxCal(Salad salad, int maxCal) {
         int count = 0;
 
-        for (int i = 0; i < salad.size(); i++) {
-            if (salad.get(i).getCalories() == maxCal) {
+        for (Vegetable vegetable : salad) {
+            if (vegetable.getCalories() == maxCal) {
                 count++;
             }
         }
@@ -79,10 +79,11 @@ public class Cook {
         int count = countVegetablesWithMaxCal(salad, maxCal);
 
         Vegetable[] result = new Vegetable[count];
+        int j = 0;
 
-        for (int i = 0, j=0; i < salad.size(); i++) {
-            if (salad.get(i).getCalories() == maxCal) {
-                result[j] = salad.get(i);
+        for (Vegetable vegetable : salad) {
+            if (vegetable.getCalories() == maxCal) {
+                result[j] = vegetable;
                 j++;
             }
         }
