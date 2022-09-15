@@ -1,5 +1,5 @@
 package by.kursy.luschik.chef.model.entity;
 
-public enum Color {
+public enum ColorTomato {
     RED, MAROON, IMPERIAL, RASPBERRY, FERRARI,
 }

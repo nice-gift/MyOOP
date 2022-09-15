@@ -1,8 +1,10 @@
 package by.kursy.luschik.chef.model.entity;
 
-import java.io.Serializable;
+import by.kursy.luschik.chef.model.exception.VegetableCaloriesWrongException;
+import by.kursy.luschik.chef.model.exception.VegetablePriceWrongException;
+import by.kursy.luschik.chef.model.exception.VegetableWeightWrongException;
 
-public class Vegetable implements Serializable {
+public class Vegetable {
     private String name;
     private double weight;
     private double price;
@@ -19,7 +21,9 @@ public class Vegetable implements Serializable {
         this.name = name;
         this.weight = weight;
         this.price = price;
-        this.calories = calories;
+        if (calories >= 0) {
+            this.calories = calories;
+        }
     }
 
     public Vegetable(Vegetable vegetable) {
@@ -32,37 +36,39 @@ public class Vegetable implements Serializable {
     }
 
     public void setName(String name) {
-        this.name = name;
+        if (name != null) {
+            this.name = name;
+        }
     }
 
     public double getWeight() {
         return weight;
     }
 
-    public void setWeight(double weight) {
+    public void setWeight(double weight) throws VegetableWeightWrongException {
         if (weight > 0) {
             this.weight = weight;
-        }
+        } else throw new VegetableWeightWrongException();
     }
 
     public double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(double price) throws VegetablePriceWrongException {
         if (price > 0) {
             this.price = price;
-        }
+        } else throw new VegetablePriceWrongException();
     }
 
     public int getCalories() {
         return calories;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(int calories) throws VegetableCaloriesWrongException {
         if (calories > 0) {
             this.calories = calories;
-        }
+        } else throw new VegetableCaloriesWrongException();
     }
 
     @Override

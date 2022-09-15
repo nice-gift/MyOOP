@@ -36,18 +36,28 @@ public class Salad implements Iterable<Vegetable>, Serializable {
         vegetables.clear();
     }
 
-    @Override
-    public String toString() {
-        Iterator<Vegetable> iterator = vegetables.iterator();
-        StringBuilder builder = new StringBuilder();
-        while (iterator().hasNext()) {
-            builder.append(iterator.next()).append(" ");
-        }
-        return builder.toString();
-    }
+//    @Override
+//    public String toString() {
+//        Iterator<Vegetable> iterator = vegetables.iterator();
+//        StringBuilder builder = new StringBuilder();
+//        while (iterator().hasNext()) {
+//            builder.append(iterator.next()).append(" ");
+//        }
+//        return builder.toString();
+//    }
 
     @Override
     public Iterator<Vegetable> iterator() {
         return vegetables.iterator();
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder("List of vegetables:");
+        for (Vegetable vegetable : vegetables
+        ) {
+            builder.append("\n").append(vegetable);
+        }
+        return builder + "";
     }
 }

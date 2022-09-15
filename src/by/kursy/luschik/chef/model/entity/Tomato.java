@@ -1,31 +1,31 @@
 package by.kursy.luschik.chef.model.entity;
 
 public class Tomato extends Vegetable {
-    private Color color;
+    private ColorTomato colorTomato;
     private int dia;
 
     public Tomato() {
-        color = Color.FERRARI;
+        colorTomato = ColorTomato.FERRARI;
         dia = 0;
     }
 
-    public Tomato(String name, double weight, double price, int calories, Color color, int dia) {
+    public Tomato(String name, double weight, double price, int calories, ColorTomato colorTomato, int dia) {
         super(name, weight, price, calories);
-        this.color = color;
+        this.colorTomato = colorTomato;
         this.dia = dia;
     }
 
     public Tomato(Tomato tomato) {
         this(tomato.getName(), tomato.getWeight(), tomato.getPrice(),
-                tomato.getCalories(), tomato.color, tomato.dia);
+                tomato.getCalories(), tomato.colorTomato, tomato.dia);
     }
 
-    public Color getColor() {
-        return color;
+    public ColorTomato getColor() {
+        return colorTomato;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setColor(ColorTomato colorTomato) {
+        this.colorTomato = colorTomato;
     }
 
     public int getDia() {
@@ -47,20 +47,20 @@ public class Tomato extends Vegetable {
         Tomato tomato = (Tomato) o;
 
         if (dia != tomato.dia) return false;
-        return color == tomato.color;
+        return colorTomato == tomato.colorTomato;
     }
 
     @Override
     public int hashCode() {
         int result = super.hashCode();
-        result = 31 * result + (color != null ? color.hashCode() : 0);
+        result = 31 * result + (colorTomato != null ? colorTomato.hashCode() : 0);
         result = 31 * result + dia;
         return result;
     }
 
     @Override
     public String toString() {
-        return super.toString() + ", color = " + color + ", dia = " + dia;
+        return super.toString() + ", color = " + colorTomato + ", dia = " + dia;
     }
 }
 
