@@ -1,8 +1,6 @@
-package by.kursy.luschik.chef.model.entity;
+package by.kursy.luschik.chef.usercontainers.fixedarray;
 
-import by.kursy.luschik.chef.model.container.FixedArray;
-
-import java.util.ArrayList;
+import by.kursy.luschik.chef.model.entity.Vegetable;
 
 public class Salad2 {
     private FixedArray vegetables;

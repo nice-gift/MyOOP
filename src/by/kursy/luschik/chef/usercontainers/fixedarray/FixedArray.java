@@ -1,8 +1,10 @@
-package by.kursy.luschik.chef.model.container;
+package by.kursy.luschik.chef.usercontainers.fixedarray;
 
+import by.kursy.luschik.chef.model.container.AbstractContainer;
+import by.kursy.luschik.chef.model.container.Container;
 import by.kursy.luschik.chef.model.entity.Vegetable;
 
-public class FixedArray {
+public class FixedArray extends AbstractContainer {
     public static final int DEFAULT_SIZE = 10;
     private Vegetable[] vegetables;
     private int current;
@@ -17,12 +19,13 @@ public class FixedArray {
         current = vegetables.length;
     }
 
-    public boolean isEmpty() {
-        return current == 0;
-    }
-
     public int size() {
         return current;
+    }
+
+    @Override
+    public void set(int index, Vegetable vegetable) {
+        vegetables[index] = vegetable;
     }
 
     public Vegetable get(int index) {
@@ -31,8 +34,7 @@ public class FixedArray {
 
     public void add(Vegetable vegetable) {
         if (current < vegetables.length) {
-            vegetables[current] = vegetable;
-            current++;
+            vegetables[current++] = vegetable;
         }
     }
 

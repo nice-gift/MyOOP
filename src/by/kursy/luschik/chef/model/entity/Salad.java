@@ -1,5 +1,8 @@
 package by.kursy.luschik.chef.model.entity;
 
+import by.kursy.luschik.chef.model.container.Container;
+import by.kursy.luschik.chef.usercontainers.fixedarray.FixedArray;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -63,20 +66,23 @@ import java.util.Iterator;
 //}
 
 public class Salad {
-    private ArrayList<Vegetable> vegetables;
+    private Container vegetables;
 
     public Salad() {
-        vegetables = new ArrayList<>();
+        vegetables = new FixedArray();
     }
 
     public Salad(Vegetable[] vegetables) {
+        this();
         if (vegetables != null) {
-            this.vegetables = new ArrayList<>();
-            for (Vegetable vegetable : vegetables
-            ) {
-                this.vegetables.add(vegetable);
+            for (int i = 0; i < vegetables.length; i++) {
+                this.vegetables.add(vegetables[i]);
             }
-        } else vegetables = new Vegetable[0];
+        }
+    }
+
+    public Salad(Container vegetables) {
+        this.vegetables = vegetables;
     }
 
     public int size() {
@@ -89,44 +95,23 @@ public class Salad {
         } else return null;
     }
 
+    public void set(int index, Vegetable vegetable) {
+        vegetables.set(index, vegetable);
+    }
+
     public void add(Vegetable vegetable) {
         vegetables.add(vegetable);
     }
 
-    public void remove(Vegetable vegetable) {
-        boolean flag = false;
-        ArrayList<Vegetable> temp = new ArrayList<>();
-
-        for (int i = 0; i < vegetables.size(); i++) {
-            if (flag || !vegetables.get(i).getName().equals(vegetable.getName()) ||
-                    vegetables.get(i).getWeight() != vegetable.getWeight() ||
-                    vegetables.get(i).getPrice() != vegetable.getPrice() ||
-                    vegetables.get(i).getCalories() != vegetable.getCalories()) {
-                temp.add(vegetables.get(i));
-            } else {
-                flag = true;
-            }
-        }
-        vegetables = temp;
-    }
-
     public void remove(int index) {
-        ArrayList<Vegetable> temp = new ArrayList<>();
-
-        for (int i = 0; i < vegetables.size(); i++) {
-            if (i != index) {
-                temp.add(vegetables.get(i));
-            }
-        }
-        vegetables = temp;
+        vegetables.remove(index);
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder("List of vegetables:");
-        for (Vegetable vegetable : vegetables
-        ) {
-            builder.append("\n").append(vegetable);
+        for (int i = 0; i < vegetables.size(); i++) {
+            builder.append("\n").append(vegetables.get(i));
         }
         return builder + "";
     }
